@@ -19,7 +19,7 @@ export default async function ProductPage({
   return (
     <div className="min-h-screen bg-gray-100">
      <div className="grid grid-cols-2 gap-12 items-start">
-        <div>
+        <div >
 
 <img
 src={product.thumbnail}
@@ -30,9 +30,9 @@ className="w-full h-[450px] object-contain"
 </div>
 <div>
 
-<h1 className="text-5xl font-bold text-black p-5">
-{product.title}
-</h1>
+<h2 className="text-3xl font-bold text-gray-800 h-20">
+  {product.title}
+</h2>
 
 <p className="text-yellow-500 text-2xl mt-3">
 ⭐ {product.rating}

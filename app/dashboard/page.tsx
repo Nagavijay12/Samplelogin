@@ -74,7 +74,7 @@ async function getProducts() {
 >
     <div
       key={product.id}
-      className="bg-white rounded-xl shadow-lg p-5 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer"
+      className="bg-white rounded-xl shadow-lg p-5 h-[310px] flex flex-col hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer"
     >
       <img
         src={product.thumbnail}
