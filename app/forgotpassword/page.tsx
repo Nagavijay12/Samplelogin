@@ -1,8 +1,29 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
+import { supabase } from "@/lib/supabase";
 
 export default function ForgotPasswordPage() {
+  const [email, setEmail] = useState("");
+const [loading, setLoading] = useState(false);
+const handleForgotPassword = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  setLoading(true);
+
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: "http://localhost:3000/reset-password",
+  });
+
+  setLoading(false);
+
+  if (error) {
+    alert(error.message);
+  } else {
+    alert("Password reset link has been sent to your email.");
+  }
+};
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 p-4">
       <div className="w-full max-w-md rounded-3xl bg-white shadow-2xl p-8">
@@ -18,7 +39,10 @@ export default function ForgotPasswordPage() {
           </p>
         </div>
 
-        <form className="space-y-6">
+      <form
+  className="space-y-6"
+  onSubmit={handleForgotPassword}
+>
 
           {/* Email */}
           <div>
@@ -27,19 +51,22 @@ export default function ForgotPasswordPage() {
             </label>
 
             <input
-              type="email"
-              placeholder="Enter your registered email"
-              className="w-full rounded-xl border-2 border-blue-200 px-4 py-3 focus:border-blue-500 focus:outline-none"
-            />
+  type="email"
+  placeholder="Enter your registered email"
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+  className="w-full rounded-xl border-2 border-blue-200 px-4 py-3 focus:border-blue-500 focus:outline-none"
+/>
           </div>
 
           {/* Send Reset Link Button */}
-          <button
-            type="submit"
-            className="w-full rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 py-3 text-lg font-bold text-white hover:from-purple-600 hover:to-pink-600 transition duration-300"
-          >
-            Send Reset Link
-          </button>
+        <button
+  type="submit"
+  disabled={loading}
+  className="w-full rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 py-3 text-lg font-bold text-white"
+>
+  {loading ? "Sending..." : "Send Reset Link"}
+</button>
 
           {/* Back to Login */}
           <p className="text-center text-gray-700">
