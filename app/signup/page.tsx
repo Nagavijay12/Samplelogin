@@ -210,7 +210,7 @@ alert("Account Created Successfully");
           </p>
         </div>
 
-         <form onSubmit={handleSignup} className="space-y-5">
+         <form onSubmit={handleSignup} className="space-y-5"  autoComplete="off">
 
           {/* Full Name */}
           <div>
@@ -226,6 +226,7 @@ alert("Account Created Successfully");
   value={fullName}
   onChange={(e) => setFullName(e.target.value)}
   onBlur={fullnameblur}
+   autoComplete="off"
   className="
     w-full
     rounded-xl
@@ -270,7 +271,7 @@ alert("Account Created Successfully");
   value={email}
   onChange={(e) => setEmail(e.target.value)}
   onBlur={emailblur}
- 
+autoComplete="new-email"
   className="
     w-full
     rounded-xl
@@ -353,6 +354,7 @@ alert("Account Created Successfully");
   placeholder="Create password"
   value={password}
   onBlur={passwordblur}
+  autoComplete="new-password"
   onChange={(e) => {
   const value = e.target.value;
 
@@ -490,7 +492,7 @@ alert("Account Created Successfully");
               <input
                 type={showConfirmPassword ? "text" : "password"}
                 placeholder="Confirm password"
-                
+                autoComplete="new-password"
                 value={confirmPassword}
                 onBlur={confirmpasswordblur}
 onChange={(e)=>setConfirmPassword(e.target.value)}
