@@ -1,6 +1,9 @@
 "use client";
 
 import { User, Package } from "lucide-react";
+import {
+  Home
+} from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -79,6 +82,13 @@ export default function Navbar({ fullName }: NavbarProps)
         
         
       </div>
+    <Link
+  href="/dashboard"
+  className="flex items-center gap-3 px-4 py-3 text-gray-800 font-medium hover:bg-indigo-50 hover:text-indigo-600 transition"
+>
+ <Home size={20} />
+  <span>Home</span>
+</Link>
 
      <Link
   href="/profile"
