@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import { supabase } from "@/lib/supabase";
+import { useRouter } from "next/navigation";
 
 type Product = {
   id: number;
@@ -15,6 +16,7 @@ type Product = {
 export default function Wishlistpage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [fullName, setFullName] = useState("");
+const router = useRouter(); 
 
   useEffect(() => {
     loadWishlist();
@@ -72,9 +74,10 @@ if (!profileError && profile) {
   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
     {products.map((product) => (
       <div
-        key={product.id}
-        className="bg-white rounded-xl shadow-lg p-5 hover:shadow-2xl transition"
-      >
+  key={product.id}
+  onClick={() => router.push(`/product/${product.id}`)}
+ className="bg-white rounded-xl shadow-lg p-5 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer"
+>
         <img
           src={product.thumbnail}
           alt={product.title}
@@ -95,7 +98,7 @@ if (!profileError && profile) {
       </div>
     ))}
   </div>
-)}
+)}  
       </div>
     </>
   );
